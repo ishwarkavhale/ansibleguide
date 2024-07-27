@@ -1,0 +1,16 @@
+Playbook3: Create multiple users on nodes using loop or with_items.
+
+--- # YAML Loops
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: Create users on node machines
+      user:
+        name: "{{item}}"
+        state: present
+      loop: # Insted of loop you can use with_items(loop is recommended in never versions)
+        - nikhil
+        - ishwar
+        - ganesh
