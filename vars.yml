@@ -1,0 +1,15 @@
+# Playbook1: Install httpd server on node using variable
+
+---
+- name: Install and start HTTPD server
+  hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+    pkgname: httpd
+  tasks:
+    - name: Install HTTPD server
+      yum:
+        name: "{{ pkgname }}"
+        state: present
