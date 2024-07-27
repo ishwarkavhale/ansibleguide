@@ -1,0 +1,15 @@
+Playbook4: Install httpd server on nodes according to when condition.
+
+
+--- # When Condition
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: Install apache2 on debian
+      command: apt-get -y install apache2  # command is a module that is used to run linux command
+      when: ansible_os_family == "Debian"  # Command will run only when statement is true.
+    - name: Install httpd on RedHat
+      command: yum -y install httpd
+      when: ansible_os_family == "RedHat"
